@@ -25,17 +25,30 @@ games = [
     ]
 teamData = {
     'AB' : {
-        'gamesPlayed' : 0,
-        'wins' : 0,
-        'losses' : 0,
-        'ties' : 0,
-        'goalsFor' : 0,
-        'goalsAgainst' : 0
+        'gamesPlayed' : 0, # AB in 'home' or 'away'
+        'wins' : 0, # if AB in 'home' if 'homescore' > 'awayscore' # if AB in 'away' if 'awayscore' > 'homescore'
+        'losses' : 0, # ^^ but reversed
+        'ties' : 0, # if AB in 'home' or 'away' if 'awayscore' == 'homescore'
+        'goalsFor' : 0, # if AB in 'home'/'away' add 'homescore'/'awayscore'
+        'goalsAgainst' : 0 # ^^ but reversed
     },
-    'BC' : {}
+    'BC' : {},
+
 }
+
+
+for u in teams:
+    teamData[u] = {}
+    gamesplayed = 0
+    for i in games:
+        if u in i['home'] or u in i['away']:
+            gamesplayed += 1 
+            teamData[u]['gamesplayed'] = gamesplayed
+    pass
+
 
 def tests():
     assert teamData['BC']['gamesPlayed'] == 12
     assert teamData['BC']['wins'] == 5
 
+print(teamData)
