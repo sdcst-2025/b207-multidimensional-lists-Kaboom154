@@ -39,12 +39,44 @@ teamData = {
 
 for u in teams:
     teamData[u] = {}
-    gamesplayed = 0
+    gamesPlayed = 0
+    gamesWon = 0
+    gamesLost = 0
+    gamesTied = 0
+    goalsScored = 0
+    goalsConceded = 0
+
     for i in games:
-        if u in i['home'] or u in i['away']:
-            gamesplayed += 1 
-            teamData[u]['gamesplayed'] = gamesplayed
-    pass
+     #   if u in i['home'] or u in i['away']:
+     #       gamesplayed += 1
+        if u in i['home']:
+            gamesPlayed += 1
+            if i['homescore'] > i['awayscore']:
+                gamesWon += 1
+            if i['homescore'] == i['awayscore']:
+                gamesTied += 1
+            else:
+                gamesLost += 1
+            goalsScored += i['homescore']
+            goalsConceded += i['awayscore']
+
+        if u in i['away']:
+            gamesPlayed += 1
+            if i['awayscore'] > i['homescore']:
+                gamesWon += 1
+            if i['awayscore'] == i['homescore']:
+                gamesTied += 1
+            else:
+                gamesLost += 1
+            goalsScored += i['awayscore']
+            goalsConceded += i['homescore']
+
+        teamData[u]['gamesplayed'] = gamesPlayed
+        teamData[u]['wins'] = gamesWon
+        teamData[u]['losses'] = gamesLost
+        teamData[u]['ties'] = gamesTied
+        teamData[u]['goalsFor'] = goalsScored
+        teamData[u]['goalsAgainst'] = goalsConceded
 
 
 def tests():
