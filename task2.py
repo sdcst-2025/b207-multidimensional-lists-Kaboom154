@@ -51,27 +51,27 @@ for u in teams:
      #       gamesplayed += 1
         if u in i['home']:
             gamesPlayed += 1
-            if i['homescore'] > i['awayscore']:
+            if i['homeScore'] > i['awayScore']:
                 gamesWon += 1
-            if i['homescore'] == i['awayscore']:
+            elif i['homeScore'] == i['awayScore']:
                 gamesTied += 1
             else:
                 gamesLost += 1
-            goalsScored += i['homescore']
-            goalsConceded += i['awayscore']
+            goalsScored += i['homeScore']
+            goalsConceded += i['awayScore']
 
         if u in i['away']:
             gamesPlayed += 1
-            if i['awayscore'] > i['homescore']:
+            if i['awayScore'] > i['homeScore']:
                 gamesWon += 1
-            if i['awayscore'] == i['homescore']:
+            elif i['awayScore'] == i['homeScore']:
                 gamesTied += 1
             else:
                 gamesLost += 1
-            goalsScored += i['awayscore']
-            goalsConceded += i['homescore']
+            goalsScored += i['awayScore']
+            goalsConceded += i['homeScore']
 
-        teamData[u]['gamesplayed'] = gamesPlayed
+        teamData[u]['gamesPlayed'] = gamesPlayed
         teamData[u]['wins'] = gamesWon
         teamData[u]['losses'] = gamesLost
         teamData[u]['ties'] = gamesTied
@@ -83,4 +83,8 @@ def tests():
     assert teamData['BC']['gamesPlayed'] == 12
     assert teamData['BC']['wins'] == 5
 
-print(teamData)
+#print(teamData)
+for i in teamData:
+    print(i)
+    for u in teamData[i]:
+        print(u,':',teamData[i][u])
