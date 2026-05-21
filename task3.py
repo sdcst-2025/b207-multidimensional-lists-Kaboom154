@@ -61,6 +61,7 @@ If the Pokémon becomes enraged, the flame burns fiercely.
 """
 
 
+
 pokemon = [
   {
     "id": 1,
@@ -31845,7 +31846,7 @@ pokemon = [
   }
 ]
 
-def pokedex():
+def pokedexSearch():
   print('''
 Choose a pokemon by
 1. ID
@@ -31858,7 +31859,7 @@ Choose a pokemon by
       for i in pokemon:
         count += 1
         if i['id'] == pokemonID:
-          print(i)
+          pokedexOutput(i)
           break
       if count <= len(pokemon):
         break
@@ -31871,7 +31872,7 @@ Choose a pokemon by
       for i in pokemon:
         count += 1
         if i['name']['english'] == pokemonName:
-          print(i)
+          pokedexOutput(i)
           break
       if count <= len(pokemon):
         break
@@ -31880,5 +31881,14 @@ Choose a pokemon by
   else:
     print('Invalid choice')
 
+def pokedexOutput(mon):
+  print('\n\n\n')
+  print(f'{mon['name']['english'].upper()}! I CHOOSE YOU!')
+  print(mon['name']['english'],'is a',*mon['type'],'type Pokemon')
+  for i in mon['base']:
+    print(i,mon['base'][i])
+  description = mon['description'].split('. ')
+  for i in description:
+    print(i)  
 
-pokedex()
+pokedexSearch()
