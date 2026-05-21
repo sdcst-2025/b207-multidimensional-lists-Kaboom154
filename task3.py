@@ -61,8 +61,6 @@ If the Pokémon becomes enraged, the flame burns fiercely.
 """
 
 
-
-
 pokemon = [
   {
     "id": 1,
@@ -31847,3 +31845,40 @@ pokemon = [
   }
 ]
 
+def pokedex():
+  print('''
+Choose a pokemon by
+1. ID
+2. English Name''')
+  choice = input('Choice: ')
+  if choice == '1':
+    while True:
+      pokemonID = int(input('Enter the ID of your Pokemon: '))
+      count = 1
+      for i in pokemon:
+        count += 1
+        if i['id'] == pokemonID:
+          print(i)
+          break
+      if count <= len(pokemon):
+        break
+      elif count > len(pokemon):
+        print('I\'m sorry, this pokemon is not in the pokedex. Please make sure to enter a number between 1 and 898\n')
+  elif choice == '2':
+    while True:
+      pokemonName = input('Enter the English Name of your Pokemon: ').title()
+      count = 1
+      for i in pokemon:
+        count += 1
+        if i['name']['english'] == pokemonName:
+          print(i)
+          break
+      if count <= len(pokemon):
+        break
+      elif count > len(pokemon):
+        print('I\'m sorry, I can\'t find the name of the Pokemon. Did you spell it correctly?\n')
+  else:
+    print('Invalid choice')
+
+
+pokedex()
